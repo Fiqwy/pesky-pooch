@@ -332,31 +332,33 @@ document.addEventListener('DOMContentLoaded', function () {
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'Sending...';
 
-                // If Formspree is configured, submit via fetch
-                if (contactForm.action && contactForm.action.indexOf('formspree.io') !== -1 && contactForm.action.indexOf('FORM_ID') === -1) {
-                    var formData = new FormData(contactForm);
+                var leadData = {
+                    name: document.getElementById('name').value.trim(),
+                    phone: document.getElementById('phone').value.trim(),
+                    message: 'Service: ' + document.getElementById('service').value,
+                    source: 'web_form'
+                };
 
-                    fetch(contactForm.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: { 'Accept': 'application/json' }
-                    }).then(function (response) {
-                        if (response.ok) {
-                            showFormSuccess();
-                        } else {
-                            submitBtn.disabled = false;
-                            submitBtn.textContent = originalText;
-                            alert('Something went wrong. Please try calling Nikki directly on 0416 346 553.');
-                        }
-                    }).catch(function () {
+                fetch('https://appliedintelligence.biz/api/webhook/lead', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-API-Key': 'd21d8bacb2a48cb5681fa7b559320222e62a2b31a0aa3d50b184e5cc5f98452d'
+                    },
+                    body: JSON.stringify(leadData)
+                }).then(function (response) {
+                    if (response.ok) {
+                        showFormSuccess();
+                    } else {
                         submitBtn.disabled = false;
                         submitBtn.textContent = originalText;
-                        alert('Connection error. Please try calling Nikki directly on 0416 346 553.');
-                    });
-                } else {
-                    // No Formspree configured — show success anyway (demo mode)
-                    showFormSuccess();
-                }
+                        alert('Something went wrong. Please try calling Nikki directly on 0416 346 553.');
+                    }
+                }).catch(function () {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                    alert('Connection error. Please try calling Nikki directly on 0416 346 553.');
+                });
             }
         });
 
