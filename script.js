@@ -216,18 +216,6 @@ document.addEventListener('DOMContentLoaded', function () {
             start: 'top 85%'
         });
 
-        // --- Counter Animation via ScrollTrigger ---
-        document.querySelectorAll('[data-count]').forEach(function (el) {
-            ScrollTrigger.create({
-                trigger: el,
-                start: 'top 85%',
-                once: true,
-                onEnter: function () {
-                    var target = parseInt(el.getAttribute('data-count'), 10);
-                    animateCounter(el, target);
-                }
-            });
-        });
     }
 
     // ---------- Failsafe: Force-show all animated elements after 4s ----------
@@ -239,34 +227,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }, 4000);
-
-    // ---------- Counter Animation ----------
-    function animateCounter(element, target) {
-        var suffix = element.getAttribute('data-suffix') || '';
-        if (prefersReducedMotion) {
-            element.textContent = target + suffix;
-            return;
-        }
-
-        var duration = 1800;
-        var startTime = null;
-
-        function step(timestamp) {
-            if (!startTime) startTime = timestamp;
-            var progress = Math.min((timestamp - startTime) / duration, 1);
-            var easeOut = 1 - Math.pow(1 - progress, 3);
-            var current = Math.floor(easeOut * target);
-            element.textContent = current + suffix;
-
-            if (progress < 1) {
-                requestAnimationFrame(step);
-            } else {
-                element.textContent = target + suffix;
-            }
-        }
-
-        requestAnimationFrame(step);
-    }
 
     // ---------- Marquee Reduced Motion ----------
     if (prefersReducedMotion) {

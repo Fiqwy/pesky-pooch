@@ -1106,40 +1106,114 @@ h3 {
     letter-spacing: 0.02em;
 }
 
-/* Stats Strip */
-.stats-strip {
+/* Credibility / As Seen In */
+.credibility {
+    padding: var(--space-3xl) 0;
+    background: var(--color-bg-dark);
+    text-align: center;
+}
+
+.credibility .section-badge--light {
+    margin-bottom: var(--space-xl);
+}
+
+.credibility-logos {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     gap: var(--space-4xl);
-    padding: var(--space-2xl) 0;
-    border-top: 1px solid rgba(155, 107, 176, 0.08);
+    flex-wrap: wrap;
 }
 
-.stat-item { text-align: center; }
+.credibility-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+}
 
-.stat-number {
+.credibility-name {
     font-family: var(--font-display);
-    font-size: 3rem;
+    font-size: 1.25rem;
     font-weight: 700;
-    color: var(--color-primary);
-    line-height: 1;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.02em;
 }
 
-.stat-suffix {
+.credibility-link {
     font-family: var(--font-display);
-    font-size: 3rem;
+    font-size: 1.25rem;
     font-weight: 700;
-    color: var(--color-primary);
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: var(--transition);
 }
 
-.stat-label {
-    display: block;
+.credibility-link:hover {
+    color: var(--color-highlight);
+}
+
+.credibility-detail {
     font-size: 0.75rem;
-    color: var(--color-text-muted);
+    color: rgba(255, 255, 255, 0.5);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-weight: 500;
+}
+
+/* About partner callout card */
+.about-partner {
+    margin-top: var(--space-xl);
+    padding: var(--space-lg) var(--space-xl);
+    border: 1px solid rgba(111, 245, 216, 0.2);
+    border-radius: 12px;
+    background: rgba(111, 245, 216, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.about-partner-label {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-highlight);
+    font-weight: 600;
+}
+
+.about-partner-name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-light);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.about-partner-name:hover {
+    color: var(--color-highlight);
+}
+
+.about-partner-desc {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Footer partners */
+.footer-partners {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.5);
     margin-top: var(--space-sm);
+}
+
+.footer-partners a {
+    color: var(--color-highlight);
+    text-decoration: none;
+}
+
+.footer-partners a:hover {
+    text-decoration: underline;
 }
 
 /* ==========================================
@@ -1756,8 +1830,6 @@ a.contact-detail:hover svg {
 
     .beach-classes { padding-top: 0; }
 
-    .stats-strip { gap: var(--space-xl); }
-
     .form-group label { font-size: 0.875rem; }
 
     .contact-inner {
@@ -1810,10 +1882,7 @@ a.contact-detail:hover svg {
 
     .services-grid { grid-template-columns: 1fr; }
 
-    .stats-strip {
-        flex-direction: column;
-        gap: var(--space-xl);
-    }
+    .credibility-logos { gap: var(--space-xl); }
 
     .contact-form-wrapper { padding: var(--space-lg); }
 
