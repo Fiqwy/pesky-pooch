@@ -292,10 +292,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'Sending...';
 
+                // "Tell Nikki About Your Dog" was collected and then thrown away: the
+                // message field carried only the service dropdown, so every lead reached
+                // Nikki without the breed, the age or the problem the owner had just
+                // taken the trouble to describe. Both now travel.
+                var ownerNotes = document.getElementById('message').value.trim();
                 var leadData = {
                     name: document.getElementById('name').value.trim(),
                     phone: document.getElementById('phone').value.trim(),
-                    message: 'Service: ' + document.getElementById('service').value,
+                    asset_type: document.getElementById('service').value,
+                    message: 'Service: ' + document.getElementById('service').value +
+                             (ownerNotes ? '\n\n' + ownerNotes : ''),
                     source: 'web_form'
                 };
 

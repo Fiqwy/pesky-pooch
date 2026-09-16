@@ -20,4 +20,4 @@ Disallow: /
 User-agent: Claude-Web
 Disallow: /
 
-Sitemap: https://www.peskypooch.com.au/sitemap.xml
+Sitemap: https://peskypoochgoldcoast.com/sitemap.xml
